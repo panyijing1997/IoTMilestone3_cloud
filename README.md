@@ -1,5 +1,5 @@
-# IoTMilestone3_Pi
-These codes should run on raspberry Pi locally
+# IoTMilestone3_Cloud
+These codes should run on cloud or another PC
 ## Set up
 
 ### 1. Clone this repo
