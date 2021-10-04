@@ -1,4 +1,4 @@
-FROM arm32v7/python:3
+FROM python:3
 WORKDIR /queen
 RUN apt-get install gcc
 RUN pip3 install --upgrade pip
@@ -9,5 +9,5 @@ COPY . .
 
 
 EXPOSE 8080
-CMD [ "python3","-u", "server.py"]
+CMD [ "python3","-u", "app.py"]
 
