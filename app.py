@@ -29,7 +29,6 @@ mqtt = Mqtt(app)
 mqtt.subscribe('queen/dht11_error')
 mqtt.subscribe('queen/dht11_store')
 mqtt.subscribe('queen/distance_store')
-mqtt.subscribe('queen/led/action')
 mqtt.subscribe('queen/led/state')
 
 @mqtt.on_connect()
@@ -149,4 +148,4 @@ def ledStatusShow():
     return render_template('ledStatus.html')
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=80, debug=False)
