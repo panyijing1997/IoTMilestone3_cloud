@@ -110,17 +110,15 @@
 
     <script>
         const clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
-        var passWord = '';
-        var username = '';
-        var hostname="broker.hivemq.com";
-        var port = 8000;
+        var hostname="4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud";
+        var port = 8884;
         var connected = false;
         var client = new Paho.MQTT.Client(hostname, Number(port), "/mqtt", clientId);
         // set callback handlers
         client.onConnectionLost = onConnectionLost;
         client.onMessageArrived = onMessageArrived;
         // connect the client
-        client.connect({onSuccess:onConnect});
+        client.connect({onSuccess:onConnect,userName:'cloud',password:'Suibian123',useSSL:true});
 
         // called when the client connects
         function onConnect() {

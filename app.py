@@ -5,6 +5,7 @@ from flask_mqtt import Mqtt
 import json
 import socket
 import sys
+import ssl
 
 db_file = 'IoTMilestone1DB.db'
 
@@ -12,13 +13,17 @@ hostname = socket.gethostname()
 local_ip = socket.gethostbyname(hostname)
 
 app = Flask(__name__)
-app.config['MQTT_BROKER_URL'] = "broker.hivemq.com"
+app.config['MQTT_BROKER_URL'] = "4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud"
 app.config['TEMPLATES_AUTO_RELOAD'] = False
-app.config['MQTT_BROKER_PORT'] = 1883
+app.config['MQTT_BROKER_PORT'] = 8883
+app.config['MQTT_USERNAME'] = 'cloud'
+app.config['MQTT_PASSWORD'] = 'Suibian123'
 app.config['MQTT_REFRESH_TIME'] = 1.0  # refresh time in seconds
 app.config['MQTT_KEEPALIVE'] = 60
-app.config['MQTT_TLS_ENABLED'] = False
+app.config['MQTT_TLS_ENABLED'] = True
 app.config['MQTT_CLEAN_SESSION'] = True
+app.config['MQTT_TLS_VERSION'] = ssl.PROTOCOL_TLS
+app.config['MQTT_TLS_CERT_REQS'] = ssl.CERT_NONE
 mqtt = Mqtt(app)
 
 mqtt.subscribe('queen/dht11_error')
@@ -93,18 +98,6 @@ def index():
     print("index", flush=True, file=sys.stderr)
     return render_template('index2.html')
 
-
-@app.route('/led/<color>/<action>')
-def ledAction(color,action):
-    #use MQTT to pulish message
-    message={
-        'color': color,
-        'action': action,
-    }
-    mqtt.publish("queen/led/action",json.dumps(message))
-
-    return render_template('index2.html')
-
 @app.route("/dht11")
 def dht():
     message={
@@ -156,4 +149,4 @@ def ledStatusShow():
     return render_template('ledStatus.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='127.0.0.1', port=8080, debug=False)
