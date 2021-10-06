@@ -98,6 +98,17 @@ def index():
     print("index", flush=True, file=sys.stderr)
     return render_template('index2.html')
 
+@app.route('/led/<color>/<action>')
+def ledAction(color,action):
+    #use MQTT to pulish message
+    message={
+        'color': color,
+        'action': action,
+    }
+    mqtt.publish("queen/led/action",json.dumps(message))
+
+    return render_template('index2.html')
+
 @app.route("/dht11")
 def dht():
     message={
