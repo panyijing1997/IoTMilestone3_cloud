@@ -8,6 +8,6 @@ RUN pip3 install Flask-MQTT
 COPY . .
 
 
-EXPOSE 8080
+EXPOSE 80
 CMD [ "python3","-u", "app.py"]
 
