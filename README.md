@@ -1,20 +1,25 @@
 # IoTMilestone3_Cloud
 These codes should run on cloud or another PC.
 
-please visit <http://milestone3v3.westeurope.azurecontainer.io> [expired]
 
 
-## setups if you want to just run this component on another PC.
 
-### 1. clone this repo 
+## setups 
+
+### 1. Set up for RPi
+
+https://github.com/panyijing1997/IoTMilestone3_Pi
+
+### 2. clone this repo 
 ```shell
- $ git checkout cloud 
+ $ git clone https://github.com/panyijing1997/IoTMilestone3_cloud.git
+ $ cd IoTMilestone3_cloud
 ```
-### 2. build the docker image
+### 3. build the docker image
 ```shell
  $ docker build -t cloud 
 ```
-### 3. run 
+### 4. run 
 ```shell
  $ docker run -p 80:80 cloud
 ```
